@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/style.css">
-    <title th:text="${title}"/>
+    <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
@@ -18,32 +18,20 @@
         <a class="me-3 py-2 text-dark text-decoration-none" href="/">Главная</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="/about">Про нас</a>
         <a class="me-5 py-2 text-dark text-decoration-none" href="/reviews">Отзывы</a>
+
     </nav>
 </div>
 
-<div class="container mt-5">
+<div class="container">
+    <h1>Авторизиоваться</h1>
+    <form th:action="@{/login}" method="post">
+     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+     <input class="form-control" type="text" name="username" placeholder="Введите имя"/><br>
+     <input class="form-control" type="password" name="password" placeholder="Введите пароль"/><br>
+     <input class="btn btn-success" type="submit" value="Войти"/>
+    </form>
 
-    <h1 th:text="${title}"/>
-
-        <form action="/reviews-add" method="post">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                <p><input class="form-control"  type="text" name="title" placeholder="Введите название статьи"></p>
-                <p><textarea class="form-control" name="text" placeholder="Введите текст"></textarea></p>
-                <button class="btn btn-success" type="submit">Добавить</button>
-        </form>
-
-    <h3 class="mt-2">Все отзывы</h3>
-
-
-        <h3 th:if="${reviews.empty}">
-            <td colspan="2"> No Reviews Available </td>
-        </h3>
-        <div th:each="review : ${reviews}">
-            <h3 class="mt-2" th:text="${review.title}"/>
-            <p th:text="${review.text}"/>
-            <a class="btn btn-warning" th:href="@{'/reviews/' + ${review.review_id}}">Детальнее</a>
-        </div>
-
+</div>
 
 
 <footer class="pt-4 my-md-5 pt-md-5 border-top">

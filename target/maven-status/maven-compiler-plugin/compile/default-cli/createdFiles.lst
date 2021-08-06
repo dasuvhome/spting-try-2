@@ -1,0 +1,9 @@
+ru\suvorov\Controllers\MainController.class
+ru\suvorov\config\MvcConfig.class
+ru\suvorov\models\Review.class
+ru\suvorov\models\User.class
+ru\suvorov\ServingWebContentApplication.class
+ru\suvorov\config\WebSecurityConfig.class
+ru\suvorov\models\Role.class
+ru\suvorov\repo\ReviewRepository.class
+ru\suvorov\repo\UserRepository.class
