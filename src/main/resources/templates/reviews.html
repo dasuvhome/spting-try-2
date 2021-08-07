@@ -14,14 +14,7 @@
 
     <h1 th:text="${title}"/>
 
-        <form th:action="@{/reviews-add}" method="post">
-                <p><input class="form-control"  type="text" name="title" placeholder="Введите название статьи"></p>
-                <p><textarea class="form-control" name="text" placeholder="Введите текст"></textarea></p>
-                <button class="btn btn-success" type="submit">Добавить</button>
-        </form>
-
     <h3 class="mt-2">Все отзывы</h3>
-
 
         <h3 th:if="${reviews.empty}">
             <td colspan="2"> No Reviews Available </td>
@@ -29,9 +22,15 @@
         <div th:each="review : ${reviews}">
             <h3 class="mt-2" th:text="${review.title}"/>
             <p th:text="${review.text}"/>
+            <p><b>Автор: <span th:text="${review.author.username}"/></b></p>
             <a class="btn btn-warning" th:href="@{/reviews/} + ${review.review_id}">Детальнее</a>
         </div>
 
+    <form class="mt-5" th:action="@{/reviews-add}" method="post">
+        <p><input class="form-control"  type="text" name="title" placeholder="Введите название статьи"></p>
+        <p><textarea class="form-control" name="text" placeholder="Введите текст"></textarea></p>
+        <button class="btn btn-success" type="submit">Добавить</button>
+    </form>
 
 </div>
 <footer th:insert="blocks/footer :: footer"/>
