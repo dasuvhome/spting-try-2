@@ -2,7 +2,7 @@ package ru.suvorov.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,10 +41,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
             auth.jdbcAuthentication()
-                    .dataSource(dataSource)
-                    .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                    .usersByUsernameQuery("SELECT username, password, enabled users WHERE username=?")
-                    .authoritiesByUsernameQuery("SELECT u.username, ur.roles from users u inner user_role ur on u.id = ur.user_id where username=?");
+                .dataSource(dataSource)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance())
+                .usersByUsernameQuery("SELECT username, password, enabled from users WHERE username=?")
+                .authoritiesByUsernameQuery("SELECT u.username, ur.roles from users u inner join user_role ur on u.id = ur.user_id where u.username=?");
+
 
 
     }

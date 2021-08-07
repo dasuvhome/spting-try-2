@@ -21,6 +21,16 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+    public User(String username, String password, String email, boolean enabled, Set<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.enabled = enabled;
+        this.roles = roles;
+    }
+
+    public User() {
+    }
 
     public Set<Role> getRoles() {
         return roles;
@@ -71,28 +81,14 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id.equals(user.id) &&
-                username.equals(user.username) &&
-                password.equals(user.password) &&
-                email.equals(user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, username, password, email);
-    }
-
-    @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", userame='" + username + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", enabled=" + enabled +
+                ", roles=" + roles +
                 '}';
     }
 }

@@ -69,8 +69,7 @@ public class MainController {
         Optional<Review> review = reviewRepository.findById(reviewId);
         ArrayList<Review> result = new ArrayList<>();
         review.ifPresent(result::add);
-        System.out.println(result);
-        model.addAttribute("result", result);
+       model.addAttribute("result", result);
 
         return "review-update";
     }
@@ -81,6 +80,7 @@ public class MainController {
                 .orElseThrow(() -> new ClassNotFoundException());
         review.setTitle(title);
         review.setText(text);
+        model.addAttribute("reviews", review);
         reviewRepository.save(review);
         return "redirect:/reviews/" + reviewId;
     }
@@ -104,6 +104,7 @@ public class MainController {
         public String addUser(User user, Model model){
          user.setEnabled(true);
          user.setRoles(Collections.singleton(Role.USER));
+
          userRepository.save(user);
          return "redirect:/login";
        }
